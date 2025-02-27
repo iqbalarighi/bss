@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role');
-            $table->integer('level');
-            $table->integer('jabatan');
-            $table->integer('lokasi_kerja');
-            
+            $table->integer('role')->default(1)->after('remember_token');
+            $table->integer('perusahaan')->after('remember_token');
+            $table->integer('kantor')->after('remember_token');
+            $table->integer('jabatan')->after('remember_token');
         });
     }
 
@@ -27,10 +26,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role');
-            $table->dropColumn('level');
+            $table->dropColumn('perusahaan');
+            $table->dropColumn('kantor');
             $table->dropColumn('jabatan');
-            $table->dropColumn('lokasi_kerja');
-            
         });
     }
 };

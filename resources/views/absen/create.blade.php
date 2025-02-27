@@ -95,6 +95,47 @@ function successCallback(position) {
 function errorCallback(position) {
 	
 }
+
+$('#capture').click(function (e) {
+	Webcam.snap(function (uri) {
+		image = uri;
+	});
+
+var lokasi = $('#lokasi').val();
+
+	$.ajax({
+		type:'POST',
+		url:'/absen/store',
+		data:{
+			_token: '{{ csrf_token() }}',
+			image:image,
+			lokasi:lokasi
+		},
+		cache:false,
+		success:function(respond){
+			if(respond == 0){
+				Swal.fire({
+					  title: 'Error!',
+					  text: 'Do you want to continue',
+					  icon: 'success',
+					  confirmButtonText: 'Cool'
+					})
+
+				//nanti set timeout ke halaman depan absensi
+				} else {
+				Swal.fire({
+					  title: 'Error!',
+					  text: 'Do you want to continue',
+					  icon: 'success',
+					  confirmButtonText: 'Cool'
+					})
+			}
+		}
+	});
+
+});
 </script>
 @endpush
 </x-layouts.absen>
+
+{{-- Buat guard login karyawan dan user admin --}}

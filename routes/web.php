@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\MasterController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -23,6 +24,9 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/absen',[AbsenController::class, 'index'])->name('absen');
     Route::get('/absen/create',[AbsenController::class, 'create']);
+    Route::post('/absen/store',[AbsenController::class, 'store']);
+
+    Route::get('/master', [MasterController::class, 'index'])->name('master');
 });
 
 require __DIR__.'/auth.php';
