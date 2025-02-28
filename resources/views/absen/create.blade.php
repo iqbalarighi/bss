@@ -115,7 +115,7 @@ var lokasi = $('#lokasi').val();
 		success:function(respond){
 			if(respond == 0){
 				Swal.fire({
-					  title: 'Error!',
+					  title: 'Sukses',
 					  text: 'Do you want to continue',
 					  icon: 'success',
 					  confirmButtonText: 'Cool'

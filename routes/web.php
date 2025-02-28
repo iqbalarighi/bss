@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MasterController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
@@ -28,5 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/master', [MasterController::class, 'index'])->name('master');
 });
+
+Route::post('/loginabsen', [AuthController::class, 'loginabsen']);
 
 require __DIR__.'/auth.php';
